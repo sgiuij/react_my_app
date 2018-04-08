@@ -9,20 +9,29 @@ class AddCalenderEvent extends React.Component {
     super(props)
 
     this.state = {
-      newCalenderEvent: ''
+      newCalenderEvent: '',
+      newCalenderDate: ''
     }
 
     this.updatenewCalenderEvent = this.updatenewCalenderEvent.bind(this)
     this.handleAddNew = this.handleAddNew.bind(this)
   }
   updatenewCalenderEvent(e) {
+  	console.log(e);
     this.setState({
       newCalenderEvent: e.target.value
     })
   }
+  updatenewCalenderDate(e){
+  	this.setState({
+      newCalenderDate: e.target.value
+    })
+  }
   handleAddNew() {
     this.props.addNew(this.state.newCalenderEvent)
+    this.props.addNew(this.state.newCalenderDate)
     this.setState({
+      newCalenderDate:'',
       newCalenderEvent: ''
     })
   }
@@ -79,7 +88,7 @@ class CalenderEventContainer extends React.Component {
   }
   AddCalenderEvent(calenderEvent) {
     this.setState((state) => ({
-      calenderEvents: state.calenderEvents.concat([calenderEvent])
+      calenderEvents: state.calenderEvents.concat([calenderEvent]),
     }))
   }
   render() {
